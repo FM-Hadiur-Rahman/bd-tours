@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { API_BASE_URL } from "@/utils/api";
 
 export default function Overview({ tour }) {
   const [formattedDate, setFormattedDate] = useState("");
@@ -24,7 +25,7 @@ export default function Overview({ tour }) {
         <div className="relative flex flex-col">
           <div className="absolute inset-0 bg-black opacity-30"></div>
           <Image
-            src={`/img/tours/${tour.imageCover}`}
+            src={`${API_BASE_URL}/img/tours/${tour.imageCover}`}
             alt={tour.name}
             width={400}
             height={250}

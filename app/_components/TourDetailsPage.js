@@ -4,10 +4,11 @@ import { useState } from "react";
 import Image from "next/image";
 import MapBoxComponent from "./mapBox";
 import ReviewCard from "./ReviewCard";
-import { userData } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 import { API_BASE_URL } from "@/utils/api";
 
 export default function TourDetailsPage({ tour }) {
+  const { userData } = useAuth(); // ✅ Access from context
   const [loading, setLoading] = useState(false);
   const [bookingMessage, setBookingMessage] = useState("");
   if (!tour) return <p>Loading...</p>; // Loading state
