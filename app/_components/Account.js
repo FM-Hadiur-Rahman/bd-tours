@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useAuth } from "../context/AuthContext"; // Import AuthContext
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie"; // To get the token
-import { fetchFromAPI } from "@/utils/api";
+import { API_BASE_URL } from "@/utils/api";
 
 export default function Account() {
   const { userData, setUserData } = useAuth(); // Get user data from Auth Context
