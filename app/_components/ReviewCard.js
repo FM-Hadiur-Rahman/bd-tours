@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
+import { API_BASE_URL } from "@/utils/api";
 
 const ReviewCard = ({ review }) => {
   if (!review || !review.user) return null;
@@ -11,7 +12,7 @@ const ReviewCard = ({ review }) => {
       <div className="flex flex-col items-center">
         {review?.user?.photo && (
           <Image
-            src={`http://localhost:8000/img/users/${review?.user?.photo}`} // Use full URL
+            src={`${API_BASE_URL}/img/users/${review?.user?.photo}`} // Use full URL
             width={50}
             height={50}
             alt="User Photo"

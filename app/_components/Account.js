@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useAuth } from "../context/AuthContext"; // Import AuthContext
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie"; // To get the token
+import { fetchFromAPI } from "@/utils/api";
 
 export default function Account() {
   const { userData, setUserData } = useAuth(); // Get user data from Auth Context
@@ -18,7 +19,7 @@ export default function Account() {
 
   useEffect(() => {
     if (userData?.data?.photo) {
-      setPreview(`http://localhost:8000/img/users/${userData.data.photo}`);
+      setPreview(`${API_BASE_URL}/img/users/${userData.data.photo}`);
     }
   }, [userData]);
 
@@ -59,16 +60,13 @@ export default function Account() {
     }
 
     try {
-      const response = await fetch(
-        "http://127.0.0.1:8000/api/v1/users/updateMe",
-        {
-          method: "PATCH",
-          headers: {
-            Authorization: `Bearer ${token}`, // Include token
-          },
-          body: formDataToSend,
-        }
-      );
+      const response = await fetch(`${API_BASE_URL}/api/v1/users/updateMe`, {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`, // Include token
+        },
+        body: formDataToSend,
+      });
 
       const data = await response.json();
 

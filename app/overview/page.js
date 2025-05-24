@@ -1,6 +1,8 @@
 import Overview from "../_components/overview";
+import { API_BASE_URL } from "@/utils/api";
+
 export default async function Page() {
-  const res = await fetch("http://127.0.0.1:8000/api/v1/tours");
+  const res = await fetch(`${API_BASE_URL}/api/v1/tours`);
   const result = await res.json();
   // Store in state
 

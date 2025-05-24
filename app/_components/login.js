@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie"; // Import js-cookie
 import { useAuth } from "../context/AuthContext"; // Import useAuth
+import { API_BASE_URL } from "@/utils/api";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -30,7 +31,7 @@ const Login = () => {
     }
     setError("");
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/v1/users/login", {
+      const response = await fetch(`${API_BASE_URL}/api/v1/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

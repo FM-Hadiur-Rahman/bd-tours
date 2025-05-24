@@ -5,6 +5,7 @@ import Image from "next/image";
 import MapBoxComponent from "./mapBox";
 import ReviewCard from "./ReviewCard";
 import { userData } from "../context/AuthContext";
+import { API_BASE_URL } from "@/utils/api";
 
 export default function TourDetailsPage({ tour }) {
   const [loading, setLoading] = useState(false);
@@ -163,12 +164,12 @@ export default function TourDetailsPage({ tour }) {
 
             {/* Tour Images */}
             <img
-              src={`http://localhost:8000/img/tours/${tour.images[1]}`}
+              src={`${API_BASE_URL}/img/tours/${tour.images[1]}`}
               alt="Tour picture"
               className="absolute left-0 top-1/2 h-60 w-60 rounded-full shadow-lg -translate-x-[10%] -translate-y-1/2 scale-[0.97] z-9"
             />
             <img
-              src={`http://localhost:8000/img/tours/${tour.images[2]}`}
+              src={`${API_BASE_URL}/img/tours/${tour.images[2]}`}
               alt="Tour picture"
               className="absolute left-0 top-1/2 h-60 w-60 rounded-full shadow-lg -translate-x-[-15%] -translate-y-1/2 scale-[0.94] z-8"
             />

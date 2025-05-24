@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie"; // Import js-cookie
 import { useAuth } from "../context/AuthContext"; // Import useAuth
+import { API_BASE_URL } from "@/utils/api";
 
 const Header = () => {
   const { userData, isLoggedIn, login, logout, setUserData } = useAuth(); // Use context
@@ -18,15 +19,12 @@ const Header = () => {
       // Fetch user data if token is present
       const fetchUserData = async () => {
         try {
-          const response = await fetch(
-            "http://127.0.0.1:8000/api/v1/users/me",
-            {
-              method: "GET",
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
+          const response = await fetch(`${API_BASE_URL}/api/v1/users/me`, {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
 
           if (!response.ok) {
             throw new Error("Failed to fetch user data");
@@ -73,7 +71,7 @@ const Header = () => {
               <Link href="/account" className="flex items-center gap-2">
                 {userData?.data?.photo && (
                   <Image
-                    src={`http://localhost:8000/img/users/${userData?.data?.photo}`} // Use full URL
+                    src={`${API_BASE_URL}/img/users/${userData?.data?.photo}`} // Use full URL
                     width={50}
                     height={50}
                     alt="User Photo"

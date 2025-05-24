@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { API_BASE_URL } from "@/utils/api";
 
 export default function SignUp() {
   const [name, setName] = useState("");
@@ -33,7 +34,7 @@ export default function SignUp() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/api/v1/users/signup",
+        `${API_BASE_URL}/api/v1/users/signup`,
         {
           method: "POST",
           headers: {
